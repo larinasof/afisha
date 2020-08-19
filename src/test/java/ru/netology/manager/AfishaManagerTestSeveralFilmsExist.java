@@ -2,12 +2,22 @@ package ru.netology.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Film;
+import ru.netology.repository.AfishaRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doReturn;
 
+@ExtendWith(MockitoExtension.class)
 public class AfishaManagerTestSeveralFilmsExist {
-        private AfishaManager manager = new AfishaManager();
+        @Mock
+        AfishaRepository repository;
+        @InjectMocks
+        private AfishaManager manager;
 
         private Film first = new Film(1, 1, "Бладшот", "Боевик", "https://www.photo.ru/google-search-350.jpg", false);
         private Film second = new Film(2, 2, "Вперёд", "Мультфильм", "https://www.photo.ru/google-search-350.jpg", false);
@@ -41,6 +51,8 @@ public class AfishaManagerTestSeveralFilmsExist {
         public void shouldAddAllFilms() {
             manager = new AfishaManager();
             showsUp();
+            Film[] returned = {first, second, third, fourth, fifth, sixth, seventh, eight, ninth, tenth};
+            doReturn(returned).when(repository).findAll();
 
             Film[] actual = manager.getLast();
             Film[] expected = new Film[]{tenth, ninth, eight, seventh, sixth, fifth, fourth, third, second,first};
@@ -52,9 +64,11 @@ public class AfishaManagerTestSeveralFilmsExist {
         public void shouldAddSeveralFilms() {
             manager = new AfishaManager(5);
             showsUp();
+            Film[] returned = {first, second, third, fourth, fifth};
+            doReturn(returned).when(repository).findAll();
 
-           Film[] actual = manager.getLast();
-           Film[] expected = new Film[]{fifth, fourth, third, second, first};
+            Film[] actual = manager.getLast();
+            Film[] expected = new Film[]{fifth, fourth, third, second, first};
 
             assertArrayEquals(expected, actual);
         }
