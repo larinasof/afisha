@@ -6,7 +6,7 @@ import ru.netology.domain.Film;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AfishaManagerTestSeveralFilmsExist {
+public class AfishaManagerSeveralFilmsExistTest {
         private AfishaManager manager = new AfishaManager();
 
         private Film first = new Film(1, 1, "Бладшот", "Боевик", "https://www.photo.ru/google-search-350.jpg", false);
@@ -20,9 +20,6 @@ public class AfishaManagerTestSeveralFilmsExist {
         private Film ninth = new Film(9, 9, "Ведьмак", "Ужасы","https://www.photo.ru/google-search-350.jpg", true);
         private Film tenth = new Film(10, 10, "Доктор Стрэндж","Фантастика", "https://www.photo.ru/google-search-350.jpg", true);
 
-
-
-        @BeforeEach
         public void showsUp() {
             manager.addFilm(first);
             manager.addFilm(second);
@@ -54,7 +51,7 @@ public class AfishaManagerTestSeveralFilmsExist {
             showsUp();
 
            Film[] actual = manager.getLast();
-           Film[] expected = new Film[]{fifth, fourth, third, second, first};
+           Film[] expected = new Film[]{tenth, ninth, eight, seventh, sixth};
 
             assertArrayEquals(expected, actual);
         }

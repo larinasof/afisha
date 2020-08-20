@@ -5,7 +5,7 @@ import ru.netology.domain.Film;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class AfishaManagerTestFilmsNotExist {
+public class AfishaManagerFilmsNotExistTest {
     private AfishaManager manager = new AfishaManager();
 
     @Test
