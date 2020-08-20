@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
-public class AfishaManagerTestOneFilmExist {
+public class AfishaManagerOneFilmExistTest {
 
         @Mock
         private AfishaRepository repository;

@@ -20,9 +20,7 @@ public class AfishaManager {
   }
 
   public AfishaManager(int quantityOfFilms) {
-    if (quantityOfFilms > 0) {
       this.quantityOfFilms = quantityOfFilms;
-    }
   }
 
   public void addFilm(Film film) {
@@ -33,8 +31,8 @@ public class AfishaManager {
     Film[] films = repository.findAll();
     int lengthFilm = Math.min(films.length, quantityOfFilms);
     Film[] result = new Film[lengthFilm];
-    for (int i = 0; i < result.length; i++) {
-      int index = result.length - i - 1;
+    for (int i = 0; i < films.length; i++) {
+      int index = films.length - i - 1;
       result[i] = films[index];
     }
     return result;

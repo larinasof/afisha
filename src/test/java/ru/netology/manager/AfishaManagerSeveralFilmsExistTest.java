@@ -1,6 +1,5 @@
 package ru.netology.manager;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
-public class AfishaManagerTestSeveralFilmsExist {
+public class AfishaManagerSeveralFilmsExistTest {
         @Mock
         AfishaRepository repository;
         @InjectMocks
@@ -31,8 +30,6 @@ public class AfishaManagerTestSeveralFilmsExist {
         private Film tenth = new Film(10, 10, "Доктор Стрэндж","Фантастика", "https://www.photo.ru/google-search-350.jpg", true);
 
 
-
-        @BeforeEach
         public void showsUp() {
             manager.addFilm(first);
             manager.addFilm(second);
@@ -49,7 +46,6 @@ public class AfishaManagerTestSeveralFilmsExist {
 
         @Test
         public void shouldAddAllFilms() {
-            manager = new AfishaManager();
             showsUp();
             Film[] returned = {first, second, third, fourth, fifth, sixth, seventh, eight, ninth, tenth};
             doReturn(returned).when(repository).findAll();
@@ -62,13 +58,12 @@ public class AfishaManagerTestSeveralFilmsExist {
 
         @Test
         public void shouldAddSeveralFilms() {
-            manager = new AfishaManager(5);
             showsUp();
-            Film[] returned = {first, second, third, fourth, fifth};
+            Film[] returned = {sixth, seventh, eight, ninth, tenth};
             doReturn(returned).when(repository).findAll();
 
             Film[] actual = manager.getLast();
-            Film[] expected = new Film[]{fifth, fourth, third, second, first};
+            Film[] expected = new Film[]{tenth, ninth, eight, seventh, sixth};
 
             assertArrayEquals(expected, actual);
         }

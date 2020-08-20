@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
-public class AfishaManagerTestFilmsNotExist {
+public class AfishaManagerFilmsNotExistTest {
 
     @Mock
     private AfishaRepository repository;
